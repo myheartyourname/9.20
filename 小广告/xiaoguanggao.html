@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>Document</title>
+	<script src='ie2.js'></script>
+	<style>
+		.box{
+			width: 100px;
+			height: 100px;
+			background: red;
+            font-size: 20px;
+            color: #fff;
+            text-align: center;
+            line-height: 100px;
+			position: absolute;
+			top: 0;
+			left: 0;
+		}
+	</style>
+</head>
+<body>
+	<div class="box">welcome</div>
+    <script>
+    	window.onload=function(){
+    		let box=$('.box')[0];
+    		let maxY=window.innerHeight-box.offsetHeight;
+            let maxX=window.innerWidth-box.offsetWidth;
+            let speed=10;
+    		let speed1=10;
+            let t=setInterval(move,150);
+    		function move(){
+                let tops=box.offsetTop+speed;
+                let lefts=box.offsetLeft+speed1;
+                box.style.top=tops+'px';
+                box.style.left=lefts+'px';
+    			if(tops>=maxY){
+    				speed*=-1;
+    			}
+    			if(tops<=0){
+    				speed*=-1;
+    			}
+                if(lefts>=maxX){
+                    speed1*=-1;
+                }
+                if(lefts<=0){
+                    speed1*=-1;
+                }
+    		}
+            box.onmouseover=function(){
+                clearInterval(t);
+            }
+            box.onmouseout=function(){
+                t=setInterval(move,150);
+            }
+    	}
+    </script>
+</body>
+</html>
